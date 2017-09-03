@@ -7,6 +7,7 @@
           <?php
                 include 'config/connection.php';
                 $pro_id = $_GET["id"];
+                $side_id = $_GET["side_id"];
                 $sqlpro = "SELECT * FROM tbl_amphur WHERE AMPHUR_ID = $pro_id";
                 $querypro = mysql_query($sqlpro);
                 $resultpro = mysql_fetch_array($querypro,MYSQL_ASSOC);
@@ -111,7 +112,7 @@
                                                                 FROM tbl_case 
                                                                 JOIN tbl_guilt ON tbl_case.GUILT_ID = tbl_guilt.GUILT_ID 
                                                                 JOIN tdl_police ON tbl_case.POLICEST_ID = tdl_police.AMPHUR_ID 
-                                                                WHERE tbl_case.POLICEST_ID = $pro_id
+                                                                WHERE tbl_case.POLICEST_ID = $pro_id AND tbl_case.SIDE_ID = $side_id 
                                                                     AND YEAR LIKE '$y' 
                                                                         GROUP by  tbl_guilt.GUILT_NAME
                                                                 ORDER BY sum(tbl_case.TOTAL) DESC";

@@ -81,7 +81,7 @@
                                 <div class="table-responsive">
                                   <?php
                                      include 'config/connection.php';
-                                     $y = $year+548;
+//                                     $y = $year+548;
                               			 $sql_get1 = "SELECT  side.SIDE_NAME
                                                                       ,side.SIDE_ID
                                                                     ,(SELECT COUNT(tbl_case.CASE_ID) 
@@ -114,7 +114,7 @@
                                                     <?php echo $iii++; ?>
                                                   </td>
                                                   <td>
-                                                      <a href="institutionthree.php?id=<?=$pro_id?>&side_name=<?= $row_get1["SIDE_NAME"];?>" data-toggle="tooltip" data-placement="right" title="รายละเอียด">
+                                                      <a href="institutionthree.php?id=<?=$pro_id?>&side_name=<?= $row_get1['SIDE_NAME'];?>&side_id=<?=$row_get1['SIDE_ID']?>" data-toggle="tooltip" data-placement="right" title="รายละเอียด">
                                                     <?php echo $row_get1["SIDE_NAME"];?>
                                                       </a>
                                                   </td>

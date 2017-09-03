@@ -1,7 +1,7 @@
 ﻿<?php
 $servername = "localhost";
 $username = "root";
-$password = "Ad123456";
+$password = "";
 $dbname = "itsisake_los";
 
 @mysql_connect($servername, $username, $password) or die("MySQL Connection Failed"); // ล็อกอินฐานข้อมูล

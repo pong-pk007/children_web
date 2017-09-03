@@ -1,4 +1,6 @@
-<?php require_once("configs_head.php"); ?>
+<?php require_once("configs_head.php"); 
+        
+?>
 <body>
     <div id="all">
         <?php require_once("configs_header.php"); ?>
@@ -6,6 +8,7 @@
         <div id="heading-breadcrumbs">
             <?php
             include 'config/connection.php';
+            $s = $_GET["side_id"];
             $pro_id = $_GET["id"];
             $sqlpro = "SELECT * FROM tdl_institution WHERE tdl_institution.INST_ID = $pro_id";
             $querypro = mysql_query($sqlpro);
@@ -105,16 +108,17 @@
                             <div class="panel-body">
                                 <div class="table-responsive">
                                     <?php
-                                    include 'config/connection.php';
+                                    include './config/connection.php';
                                     $y = $year + 548;
-                                    $sql_get1 = "SELECT tbl_guilt.GUILT_NAME, sum(tbl_case.TOTAL)  as TOTAL
+                                    $sql_get1 = "SELECT tbl_guilt.GUILT_NAME, tbl_guilt.GUILT_ID, sum(tbl_case.TOTAL) as TOTAL 
                                                                 FROM tbl_case 
                                                                 JOIN tbl_guilt ON tbl_case.GUILT_ID = tbl_guilt.GUILT_ID 
                                                                 JOIN tdl_police ON tbl_case.POLICEST_ID = tdl_police.AMPHUR_ID 
-                                                                WHERE tbl_case.INST_ID = $pro_id 
-                                                                    AND YEAR LIKE '$y' 
-                                                                        GROUP by  tbl_guilt.GUILT_NAME
-                                                                ORDER BY tbl_case.TOTAL DESC";
+                                                                WHERE tbl_case.INST_ID = $pro_id AND tbl_case.SIDE_ID = $s 
+                                                                AND tbl_case.YEAR = '$y' 
+                                                                GROUP BY tbl_guilt.GUILT_ID
+                                                                ORDER BY sum(tbl_case.TOTAL) DESC";
+                                    
                                     $rel_get1 = mysql_query($sql_get1) or die(mysql_error());
                                     ?>
                                     <table class="table table-striped table-bordered table-hover" id="dataTables-example">
@@ -141,7 +145,7 @@
                                                         <?php echo $iii++; ?>
                                                     </td>
                                                     <td>
-                                                        <a href="#myModal" class="link_dialog" data-toggle="modal">
+                                                        <a href="#myModal" class="link_dialog" data-guilt="<?=$row_get1["GUILT_NAME"]?>" data-guilt-id="<?=$row_get1["GUILT_ID"]?>" data-inst_id="<?=$pro_id?>" data-toggle="modal">
                                                 <?php echo $row_get1["GUILT_NAME"]; ?>
                                                         </a>
                                                     </td>
@@ -158,20 +162,19 @@
                             <!-- /.col-md-3 -->
 
                             <div class="modal fade" id="myModal">
-                                <div class="modal-dialog">
+                                <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                            <h3 class="modal-title">Big Title</h3>
+                                            <h3 class="modal-title" id="modal_sub_title"></h3>
                                         </div>
                                         <div class="modal-body">
-                                            <h5 class="text-center">Hello. Some text here.</h5>
+                                            <!--<h4 class="text-center" id="modal_sub_title"></h4>-->
                                             <table class="table table-striped" id="tblGrid">
                                                 <thead id="tblHead">
                                                     <tr>
                                                         <th>ลำดับ</th>
                                                         <th>สภ.</th>
-                                                        <th>ฐานความผิด</th>
                                                         <th>รวม</th>
                                                         <th>เฉลี่ย</th>
                                                         <!--<th class="text-right">Mean</th>-->
@@ -187,7 +190,7 @@
                                             </div>-->
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" id="btn_close" class="btn btn-default">Close</button>
+                                            <button type="button" id="btn_close" class="btn btn-success">Close</button>
                                             <!--<button type="button" class="btn btn-primary">Save Changes</button>-->
                                         </div>
 
