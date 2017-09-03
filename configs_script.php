@@ -24,5 +24,45 @@ $('#dataTables-example').dataTable({
     info: false,
     pageLength: 10
 });
+$('.link_dialog').click(function () {
+    
+//                $.ajax({
+//                    url: "PHP_AJAX/COUNT_AJAX.php",
+//                    type: "POST",
+//                    success: function (result) {
+//                        var obj = jQuery.parseJSON(result);
+//                        if (obj != '') {
+//                            $("#bd_pd_count").empty();
+//                            $.each(obj, function (key, val) {
+//                                var tr = "<tr>";
+//                                tr = tr + "<td>" + (key + 1) + "</td>";
+//                                tr = tr + "<td>" + val["code"] + "</td>";
+//                                tr = tr + "<td id='val'>" + val["val"] + "</td>";
+//                                tr = tr + "</tr>";
+//                                $("#tb_pd_count").append(tr);
+//                            });
+//                        }
+//                    }
+//                });
+//                $("#md_tb_bd").empty();
+                 
+                var tr = "<tr id='tr1'>";
+                         tr = tr + "<td>" + ("test_table1") + "</td>";
+                         tr = tr + "<td>" + ("test_table2") + "</td>";
+                         tr = tr + "<td>" + ("test_table3") + "</td>";
+                         tr = tr + "<td>" + ("test_table4") + "</td>";
+                         tr = tr + "<td>" + ("test_table5") + "</td>";
+                    tr = tr + "</tr>";
+                    $("#tblGrid").append(tr);
+                    
+               $('#myModal').show();
+               $("#btn_close").click(function (){
+                         $("#tr1").remove();
+                         console.log("clear");
+                          $('#myModal').modal("hide");
+                    });
+//               console.log("test");
+            });
+            
 });
 </script>

@@ -141,7 +141,7 @@
                                                         <?php echo $iii++; ?>
                                                     </td>
                                                     <td>
-                                                        <a href="#" class="link_dialog">
+                                                        <a href="#myModal" class="link_dialog" data-toggle="modal">
                                                 <?php echo $row_get1["GUILT_NAME"]; ?>
                                                         </a>
                                                     </td>
@@ -169,34 +169,26 @@
                                             <table class="table table-striped" id="tblGrid">
                                                 <thead id="tblHead">
                                                     <tr>
-                                                        <th>Location</th>
-                                                        <th>Points</th>
-                                                        <th class="text-right">Mean</th>
+                                                        <th>ลำดับ</th>
+                                                        <th>สภ.</th>
+                                                        <th>ฐานความผิด</th>
+                                                        <th>รวม</th>
+                                                        <th>เฉลี่ย</th>
+                                                        <!--<th class="text-right">Mean</th>-->
                                                     </tr>
                                                 </thead>
-                                                <tbody>
-                                                    <tr><td>Long Island, NY, USA</td>
-                                                        <td>3</td>
-                                                        <td class="text-right">45001</td>
-                                                    </tr>
-                                                    <tr><td>Chicago, Illinois, USA</td>
-                                                        <td>5</td>
-                                                        <td class="text-right">76455</td>
-                                                    </tr>
-                                                    <tr><td>New York, New York, USA</td>
-                                                        <td>10</td>
-                                                        <td class="text-right">39097</td>
-                                                    </tr>
+                                                <tbody class="md_tb_bd">
+                                                    
                                                 </tbody>
                                             </table>
-                                            <div class="form-group">
+<!--                                            <div class="form-group">
                                                 <input type="button" class="btn btn-warning btn-sm pull-right" value="Reset">
                                                 <div class="clearfix"></div>
-                                            </div>
+                                            </div>-->
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-default " data-dismiss="modal">Close</button>
-                                            <button type="button" class="btn btn-primary">Save Changes</button>
+                                            <button type="button" id="btn_close" class="btn btn-default">Close</button>
+                                            <!--<button type="button" class="btn btn-primary">Save Changes</button>-->
                                         </div>
 
                                     </div><!-- /.modal-content -->
@@ -227,11 +219,7 @@
                 </div>
             </div>
         </div>
-
-
         <!-- *** GET IT END *** -->
-
-
 <?php require_once("configs_footer.php"); ?>
 
 
@@ -242,32 +230,6 @@
 <?php require_once("configs_script.php"); ?>
 
 
-    <script>
-        $(document).ready(function () {
-            $('.link_dialog').click(function () {
-//                $.ajax({
-//                    url: "PHP_AJAX/COUNT_AJAX.php",
-//                    type: "POST",
-//                    success: function (result) {
-//                        var obj = jQuery.parseJSON(result);
-//                        if (obj != '') {
-//                            $("#bd_pd_count").empty();
-//                            $.each(obj, function (key, val) {
-//                                var tr = "<tr>";
-//                                tr = tr + "<td>" + (key + 1) + "</td>";
-//                                tr = tr + "<td>" + val["code"] + "</td>";
-//                                tr = tr + "<td id='val'>" + val["val"] + "</td>";
-//                                tr = tr + "</tr>";
-//                                $("#tb_pd_count").append(tr);
-//                            });
-//                        }
-//                    }
-//                });
-               $('#myModal').show();
-               console.log("test");
-            });
-        });
-    </script>
 
 </body>
 

@@ -85,6 +85,7 @@
                                    <?php
                                    $txtYear = (isset($_POST['txt_year']) && $_POST['txt_year'] != '') ? $_POST['txt_year'] : date('Y');
                                    $yearStart = date('Y');
+                                   echo $yearStart;
                                    $yearEnd = $txtYear-5;
                                    for($year=$yearStart; $year > $yearEnd; $year--){
                                     $selected = '';
@@ -101,7 +102,7 @@
                            <section>
                               <div class="panel-body">
                                   <h4 class="center">ปัญหา: <?=$_GET["side_name"]?></h4>
-                                  <h4>อำเภอ: <?php echo $resultpro["AMPHUR_NAME"];?> ประจำปี <?=($year+543)?></h4>
+                                  <h4>อำเภอ: <?php echo $resultpro["AMPHUR_NAME"];?> ประจำปี <?=($year+548)?></h4>
                                 <div class="table-responsive">
                                   <?php
                                      include 'config/connection.php';
