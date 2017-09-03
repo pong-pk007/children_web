@@ -73,13 +73,61 @@
 
                         <section>
 
-                            <div class="heading">
+<!--                            <div class="heading">
                                 <h2>We are here to help you</h2>
-                            </div>
+                            </div>-->
 
-                            <p class="lead">Are you curious about something? Do you have some kind of problem with our products? As am hastily invited settled at limited civilly fortune me. Really spring in extent an by. Judge but built gay party world. Of so am he remember
-                                although required. Bachelor unpacked be advanced at. Confined in declared marianne is vicinity.</p>
-                            <p>Please feel free to contact us, our customer service center is working for you 24/7.</p>
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                  <?php
+                                     include 'config/connection.php';
+                                     $y = $year+548;
+                              			 $sql_get1 = "SELECT  side.SIDE_NAME
+                                                                      ,side.SIDE_ID
+                                                                    ,(SELECT COUNT(tbl_case.CASE_ID) 
+                                                                             FROM tbl_case 
+                                                                             WHERE tbl_case.SIDE_ID = side.SIDE_ID AND tbl_case.INST_ID = $pro_id) AS CNT_CASE
+
+                                                                    ,ifNULL((SELECT SUM(tbl_case.TOTAL) 
+                                                                             FROM tbl_case 
+                                                                             WHERE tbl_case.SIDE_ID = side.SIDE_ID AND tbl_case.INST_ID = $pro_id),0) AS SUM_TOTAL
+                                                                     FROM tbl_side AS side
+
+                                                                     ORDER BY (SELECT COUNT(tbl_case.CASE_ID) FROM tbl_case WHERE tbl_case.SIDE_ID = side.SIDE_ID) DESC";
+                              			 $rel_get1 = mysql_query($sql_get1) or die(mysql_error());
+                              		?>
+                                  <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                          <thead>
+                                              <tr>
+                                                  <th style="text-align:center;">ลำดับ</th>
+                                                  <th style="text-align:center;">ฐานความผิด</th>
+                                                  <th style="text-align:center;">รวม</th>
+                                              </tr>
+                                          </thead>
+                                          <tbody>
+                                            <?php
+                                              $iii=1;
+                                              while($row_get1 = @mysql_fetch_array($rel_get1)){
+                                            ?>
+                                              <tr class="odd gradeX" <?php if($iii == 1){echo 'style="background-color: #FF3333"';}elseif($iii==2){    echo 'style="background-color: #FFCC00"';}elseif($iii==3){    echo 'style="background-color: #FFFF33"';} ?>>
+                                                  <td style="text-align:center;">
+                                                    <?php echo $iii++; ?>
+                                                  </td>
+                                                  <td>
+                                                      <a href="institutionthree.php?id=<?=$pro_id?>&side_name=<?= $row_get1["SIDE_NAME"];?>" data-toggle="tooltip" data-placement="right" title="รายละเอียด">
+                                                    <?php echo $row_get1["SIDE_NAME"];?>
+                                                      </a>
+                                                  </td>
+                                                  <td style="text-align:center;">
+                                                    <?php echo $row_get1["SUM_TOTAL"];?>
+                                                  </td>
+                                              </tr>
+                                            <?php $iii; } ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                              </div>
+                            <!-- /.col-md-3 -->
 
                         </section>
 

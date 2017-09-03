@@ -20,8 +20,9 @@
 <script>
 $(document).ready(function () {
 $('#dataTables-example').dataTable({
-    paging: false,
-    info: false
+    paging: true,
+    info: false,
+    pageLength: 10
 });
 });
 </script>

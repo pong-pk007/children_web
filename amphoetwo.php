@@ -78,15 +78,15 @@
                            <form method="POST" action="">
                              <table>
                                  <tr>
-                                 <td>ระบุปี : </td>
+                                     <td><label for="txt_year">ระบุปี :</label></td>
                                  <td>
-                                  <select name="txt_year">
+                                     <select id="txt_year" class="form-control" name="txt_year">
                                    <option value="">--------------</option>
                                    <?php
                                    $txtYear = (isset($_POST['txt_year']) && $_POST['txt_year'] != '') ? $_POST['txt_year'] : date('Y');
                                    $yearStart = date('Y');
                                    $yearEnd = $txtYear-5;
-                                   for($year=$yearStart;$year > $yearEnd;$year--){
+                                   for($year=$yearStart; $year > $yearEnd; $year--){
                                     $selected = '';
                                     if($txtYear == $year) $selected = 'selected="selected"';
                                     echo '<option value="'.$year.'" '.$selected.'>'. ($year+543) .'</option>'."\n";
@@ -94,20 +94,27 @@
                                    ?>
                                   </select>
                                  </td>
-                                 <td><input type="submit" value="ค้นหา" /></td>
+                                 <td><input class="btn btn-primary form-control" type="submit" value="ค้นหา" /></td>
                                 </tr>
                             </table>
                            </form>
                            <section>
                               <div class="panel-body">
+                                  <h4 class="center">ปัญหา: <?=$_GET["side_name"]?></h4>
+                                  <h4>อำเภอ: <?php echo $resultpro["AMPHUR_NAME"];?> ประจำปี <?=($year+543)?></h4>
                                 <div class="table-responsive">
                                   <?php
                                      include 'config/connection.php';
                                      $y = $year+548;
-                              			 $sql_get1 = "SELECT * FROM tbl_case JOIN tbl_guilt ON tbl_case.GUILT_ID = tbl_guilt.GUILT_ID JOIN tdl_police ON tbl_case.POLICEST_ID = tdl_police.AMPHUR_ID JOIN tbl_amphur ON tbl_case.POLICEST_ID = tbl_amphur.AMPHUR_ID WHERE POLICEST_ID = $pro_id AND YEAR LIKE '$y' ORDER BY tbl_case.TOTAL DESC";
+                              			 $sql_get1 = "SELECT tbl_guilt.GUILT_NAME, sum(tbl_case.TOTAL)  as TOTAL
+                                                                FROM tbl_case 
+                                                                JOIN tbl_guilt ON tbl_case.GUILT_ID = tbl_guilt.GUILT_ID 
+                                                                JOIN tdl_police ON tbl_case.POLICEST_ID = tdl_police.AMPHUR_ID 
+                                                                WHERE tbl_case.POLICEST_ID = $pro_id
+                                                                    AND YEAR LIKE '$y' 
+                                                                        GROUP by  tbl_guilt.GUILT_NAME
+                                                                ORDER BY sum(tbl_case.TOTAL) DESC";
                               			 $rel_get1 = mysql_query($sql_get1) or die(mysql_error());
-
-
                               		?>
                                   <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                           <thead>
@@ -122,7 +129,7 @@
                                               $iii=1;
                                               while($row_get1 = @mysql_fetch_array($rel_get1)){
                                             ?>
-                                              <tr class="odd gradeX">
+                                              <tr class="odd gradeX" <?php if($iii == 1){echo 'style="background-color: #FF3333"';}elseif($iii==2){    echo 'style="background-color: #FFCC00"';}elseif($iii==3){    echo 'style="background-color: #FFFF33"';} ?>>
                                                   <td style="text-align:center;">
                                                     <?php echo $iii++; ?>
                                                   </td>

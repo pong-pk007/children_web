@@ -108,12 +108,17 @@
                                               while($row_get1 = mysql_fetch_array($rel_get1)){
                                             ?>
                                               <tr class="odd gradeX" <?php if($iii == 1){echo 'style="background-color: #FF3333"';}elseif($iii==2){    echo 'style="background-color: #FFCC00"';}elseif($iii==3){    echo 'style="background-color: #FFFF33"';} ?> >
+                                         
                                                   <td style="text-align:center;">
                                                     <?php echo $iii++; ?>
                                                   </td>
+                                            
                                                   <td>
-                                                    <?php echo $row_get1["SIDE_NAME"];?>
+                                                      <a href="amphoetwo.php?id=<?=$pro_id?>&side_name=<?= $row_get1["SIDE_NAME"];?>" data-toggle="tooltip" data-placement="right" title="รายละเอียด">
+                                                            <?php echo $row_get1["SIDE_NAME"];?> 
+                                                      </a>
                                                   </td>
+                                           
                                                   <td style="text-align:center;">
                                                     <?php echo number_format($row_get1["SUM_TOTAL"]);?>
                                                   </td>
