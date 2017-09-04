@@ -65,6 +65,7 @@
                                     <table class="table table-bordered table-striped">
                                         <thead>
                                             <tr>
+                                                <th>ลำดับ</th>
                                                 <th style="text-align:center;">ปัญหาด้านเด็กและเยาวชน</th>
                                                 <th style="text-align:center;">รวม</th>
                                             </tr>
@@ -101,7 +102,7 @@
                                                       </a>
                                                   </td>
                                                   <td style="text-align:center;">
-                                                    <?php echo $row_get1["SUM_TOTAL"];?>
+                                                    <?php echo number_format($row_get1["SUM_TOTAL"]);?>
                                                   </td>
                                               </tr>
                                             <?php $iii; } ?>

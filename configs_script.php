@@ -92,8 +92,8 @@
             });
 //               console.log("test");
         });
-        
-               $('.link_dialog_two').click(function () {
+
+        $('.link_dialog_two').click(function () {
             var guilt = $(this).attr('data-guilt');
             var guilt_id = $(this).attr('data-guilt-id');
 
@@ -157,6 +157,5 @@
             });
 //               console.log("test");
         });
-
     });
 </script>

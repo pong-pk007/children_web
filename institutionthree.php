@@ -1,5 +1,4 @@
-<?php require_once("configs_head.php"); 
-        
+<?php require_once("configs_head.php");
 ?>
 <body>
     <div id="all">
@@ -118,7 +117,7 @@
                                                                 AND tbl_case.YEAR = '$y' 
                                                                 GROUP BY tbl_guilt.GUILT_ID
                                                                 ORDER BY sum(tbl_case.TOTAL) DESC";
-                                    
+
                                     $rel_get1 = mysql_query($sql_get1) or die(mysql_error());
                                     ?>
                                     <table class="table table-striped table-bordered table-hover" id="dataTables-example">
@@ -134,27 +133,30 @@
                                             $iii = 1;
                                             while ($row_get1 = @mysql_fetch_array($rel_get1)) {
                                                 ?>
-                                                <tr class="odd gradeX" <?php if ($iii == 1) {
-                                                    echo 'style="background-color: #FF3333"';
-                                                } elseif ($iii == 2) {
-                                                    echo 'style="background-color: #FFCC00"';
-                                                } elseif ($iii == 3) {
-                                                    echo 'style="background-color: #FFFF33"';
-                                                } ?>>
+                                                <tr class="odd gradeX" <?php
+                                            if ($iii == 1) {
+                                                echo 'style="background-color: #FF3333"';
+                                            } elseif ($iii == 2) {
+                                                echo 'style="background-color: #FFCC00"';
+                                            } elseif ($iii == 3) {
+                                                echo 'style="background-color: #FFFF33"';
+                                            }
+                                                ?>>
                                                     <td style="text-align:center;">
-                                                        <?php echo $iii++; ?>
+    <?php echo $iii++; ?>
                                                     </td>
                                                     <td>
-                                                        <a href="#myModal" class="link_dialog" data-guilt="<?=$row_get1["GUILT_NAME"]?>" data-guilt-id="<?=$row_get1["GUILT_ID"]?>" data-inst_id="<?=$pro_id?>" data-toggle="modal">
-                                                <?php echo $row_get1["GUILT_NAME"]; ?>
+                                                        <a href="#myModal" class="link_dialog" data-guilt="<?= $row_get1["GUILT_NAME"] ?>" data-guilt-id="<?= $row_get1["GUILT_ID"] ?>" data-inst_id="<?= $pro_id ?>" data-toggle="modal">
+    <?php echo $row_get1["GUILT_NAME"]; ?>
                                                         </a>
                                                     </td>
                                                     <td style="text-align:center;">
     <?php echo $row_get1["TOTAL"]; ?>
                                                     </td>
                                                 </tr>
-    <?php $iii;
-} ?>
+                                                <?php $iii;
+                                            }
+                                            ?>
                                         </tbody>
                                     </table>
                                 </div>
@@ -181,13 +183,13 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody class="md_tb_bd">
-                                                    
+
                                                 </tbody>
                                             </table>
-<!--                                            <div class="form-group">
-                                                <input type="button" class="btn btn-warning btn-sm pull-right" value="Reset">
-                                                <div class="clearfix"></div>
-                                            </div>-->
+                                            <!--                                            <div class="form-group">
+                                                                                            <input type="button" class="btn btn-warning btn-sm pull-right" value="Reset">
+                                                                                            <div class="clearfix"></div>
+                                                                                        </div>-->
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" id="btn_close" class="btn btn-success">Close</button>
@@ -214,12 +216,12 @@
 
         <div id="get-it">
             <div class="container">
-                <div class="col-md-8 col-sm-12">
-                    <h3>Do you want cool website like this one?</h3>
-                </div>
-                <div class="col-md-4 col-sm-12">
-                    <a href="#" class="btn btn-template-transparent-primary">Buy this template now</a>
-                </div>
+                <!--                <div class="col-md-8 col-sm-12">
+                                    <h3>Do you want cool website like this one?</h3>
+                                </div>
+                                <div class="col-md-4 col-sm-12">
+                                    <a href="#" class="btn btn-template-transparent-primary">Buy this template now</a>
+                                </div>-->
             </div>
         </div>
         <!-- *** GET IT END *** -->
